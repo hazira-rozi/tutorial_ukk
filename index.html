@@ -3,447 +3,380 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial Lengkap - Rental Motor UKK 2026</title>
-    
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- PrismJS (Syntax Highlighter) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+    <title>Tutorial Proyek Rental Motor (UKK RPL 2026)</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
+        :root {
+            --primary: #4f46e5;
+            --secondary: #0ea5e9;
+            --bg: #f8fafc;
+            --text: #334155;
+            --code-bg: #1e293b;
+            --code-text: #e2e8f0;
         }
 
-        /* Sidebar Styling */
-        .sidebar {
-            height: 100vh;
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar */
+        nav {
+            background: white;
             position: sticky;
             top: 0;
-            overflow-y: auto;
-            background: #fff;
-            border-right: 1px solid #dee2e6;
-            padding-top: 20px;
+            border-bottom: 1px solid #e2e8f0;
+            z-index: 100;
+            padding: 0.5rem 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
-        .sidebar .nav-link {
-            color: #495057;
-            font-weight: 500;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin: 2px 10px;
-            transition: all 0.2s;
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .sidebar .nav-link:hover, .sidebar .nav-link.active {
-            background-color: #e9ecef;
-            color: #0d6efd;
+        .logo { font-weight: 800; color: var(--primary); font-size: 1.2rem; text-decoration: none; }
+        
+        .nav-links { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: var(--text); font-size: 0.9rem; font-weight: 500; }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            padding-bottom: 4rem;
         }
 
-        .sidebar-heading {
-            font-size: .75rem;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: #6c757d;
-            padding: 10px 20px;
-            margin-top: 20px;
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 2px solid #f1f5f9;
         }
 
-        /* Content Styling */
-        .main-content {
-            padding: 40px;
+        h1 { color: var(--primary); margin-bottom: 0.5rem; }
+        h2 { color: #1e293b; margin-top: 3rem; border-left: 5px solid var(--secondary); padding-left: 15px; }
+        h3 { color: #475569; margin-top: 2rem; }
+
+        p { margin-bottom: 1.5rem; }
+
+        /* Code Blocks */
+        pre {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            border: 1px solid #334155;
         }
 
-        section {
-            margin-bottom: 60px;
-            scroll-margin-top: 20px;
+        code {
+            font-family: 'Consolas', monospace;
+            background: #f1f5f9;
+            color: #d946ef;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
         }
 
-        h2 {
-            color: #2c3e50;
-            border-bottom: 3px solid #0d6efd;
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        /* Components */
+        .badge {
             display: inline-block;
-            padding-bottom: 5px;
-            margin-bottom: 20px;
-        }
-
-        h3 {
-            margin-top: 30px;
-            color: #495057;
-        }
-
-        .step-badge {
-            background-color: #0d6efd;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
             color: white;
-            width: 35px;
-            height: 35px;
+            background: var(--primary);
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+
+        .alert {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .step-number {
+            background: var(--text);
+            color: white;
+            width: 24px;
+            height: 24px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             margin-right: 10px;
-            font-weight: bold;
+            font-size: 0.8rem;
         }
 
-        /* Code Block Styling */
-        pre {
-            border-radius: 8px !important;
-            margin: 15px 0 !important;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .alert-tip {
-            border-left: 4px solid #198754;
-            background-color: #f1fcf6;
-            padding: 15px;
-            border-radius: 4px;
-            margin: 15px 0;
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            color: #94a3b8;
+            font-size: 0.85rem;
         }
     </style>
 </head>
 <body>
 
-<div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar Navigation -->
-        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
-            <div class="position-sticky">
-                <div class="text-center mb-4">
-                    <i class="fas fa-motorcycle fa-3x text-primary mb-2"></i>
-                    <h5 class="fw-bold">Rental Motor</h5>
-                    <small class="text-muted">Tutorial UKK 2026</small>
-                </div>
-                
-                <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link active" href="#intro">Pengantar</a></li>
-                    
-                    <h6 class="sidebar-heading">Persiapan</h6>
-                    <li class="nav-item"><a class="nav-link" href="#step1">1. Server & DB</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#step2">2. Instalasi Laravel</a></li>
-                    
-                    <h6 class="sidebar-heading">Backend</h6>
-                    <li class="nav-item"><a class="nav-link" href="#step3">3. Migration</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#step4">4. Models</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#step5">5. Controllers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#step6">6. Routes</a></li>
-                    
-                    <h6 class="sidebar-heading">Frontend</h6>
-                    <li class="nav-item"><a class="nav-link" href="#step7">7. Views & UI</a></li>
-                </ul>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">🛵 MotoRent Tutorial</a>
+            <ul class="nav-links">
+                <li><a href="#setup">Setup</a></li>
+                <li><a href="#database">Database</a></li>
+                <li><a href="#backend">Backend</a></li>
+                <li><a href="#frontend">Frontend</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Tutorial Aplikasi Rental Motor</h1>
+            <p>Panduan Lengkap Pengerjaan UKK RPL 2026 dengan Laravel 12</p>
+            <div>
+                <span class="badge">Laravel 12</span>
+                <span class="badge" style="background: #0ea5e9;">Bootstrap 5</span>
+                <span class="badge" style="background: #f59e0b;">MySQL</span>
             </div>
-        </nav>
+        </header>
 
-        <!-- Main Content -->
-        <main class="col-md-9 ms-sm-auto col-lg-10 main-content">
+        <section id="intro">
+            <p>Dokumen ini berisi panduan teknis langkah demi langkah untuk membangun aplikasi Rental Motor. Fokus utama tutorial ini adalah pada <strong>Logika Bisnis</strong> (Penyewaan, Pengembalian, Denda) dan <strong>Manajemen Data</strong> sesuai spesifikasi soal.</p>
+        </section>
+
+        <section id="setup">
+            <h2>1. Persiapan & Instalasi</h2>
+            <p>Pastikan Composer dan PHP 8.2+ sudah terinstall.</p>
             
-            <!-- Intro -->
-            <section id="intro">
-                <div class="p-5 mb-4 bg-light rounded-3 border">
-                    <div class="container-fluid py-3">
-                        <h1 class="display-5 fw-bold">Tutorial Aplikasi Rental Motor</h1>
-                        <p class="col-md-8 fs-4">Panduan lengkap membangun aplikasi manajemen penyewaan motor menggunakan Laravel 12, Bootstrap 5, dan MySQL.</p>
-                        <a href="https://github.com/hazira-rozi/rental_motor" class="btn btn-primary btn-lg" target="_blank"><i class="fab fa-github me-2"></i>Lihat Repository</a>
-                    </div>
-                </div>
-            </section>
+            <h3>Langkah 1: Install Laravel</h3>
+            <pre><code>composer create-project laravel/laravel rental-motor
+cd rental-motor</code></pre>
 
-            <!-- Step 1 -->
-            <section id="step1">
-                <h2><span class="step-badge">1</span>Persiapan Server & Database</h2>
-                <p>Sebelum memulai koding, kita perlu menyiapkan lingkungan kerja.</p>
-                
-                <h3>A. Laragon</h3>
-                <ol>
-                    <li>Download dan Install <strong>Laragon Full</strong>.</li>
-                    <li>Jalankan Laragon, klik <strong>Start All</strong>.</li>
-                    <li>Buka Terminal Laragon, ketik <code>php -v</code>. Pastikan versi PHP >= 8.2.</li>
-                </ol>
-
-                <h3>B. Database (DBeaver/HeidiSQL)</h3>
-                <p>Buat database baru untuk menampung data aplikasi.</p>
-                <div class="alert-tip">
-                    <i class="fas fa-lightbulb me-2"></i><strong>Tips:</strong> Nama database harus sama dengan konfigurasi di file <code>.env</code> nanti.
-                </div>
-                <ul>
-                    <li><strong>Host:</strong> localhost</li>
-                    <li><strong>User:</strong> root</li>
-                    <li><strong>Password:</strong> (kosong)</li>
-                    <li><strong>Nama Database:</strong> <code>rental_motor</code></li>
-                </ul>
-            </section>
-
-            <!-- Step 2 -->
-            <section id="step2">
-                <h2><span class="step-badge">2</span>Instalasi Laravel</h2>
-                <p>Buka terminal di folder <code>www</code> Laragon, lalu jalankan perintah berikut:</p>
-                
-                <pre><code class="language-bash">composer create-project laravel/laravel rental_motor</code></pre>
-                
-                <p>Setelah selesai, masuk ke folder proyek dan atur koneksi database di file <code>.env</code>:</p>
-                <pre><code class="language-bash">cd rental_motor
-code .</code></pre>
-
-                <p>Edit file <code>.env</code>:</p>
-                <pre><code class="language-bash">DB_CONNECTION=mysql
+            <h3>Langkah 2: Konfigurasi Database</h3>
+            <p>Buka file <code>.env</code> dan sesuaikan koneksi database:</p>
+            <pre><code>DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=rental_motor
+DB_DATABASE=rental_motor_db
 DB_USERNAME=root
 DB_PASSWORD=</code></pre>
-            </section>
+        </section>
 
-            <!-- Step 3 -->
-            <section id="step3">
-                <h2><span class="step-badge">3</span>Migration (Skema Database)</h2>
-                <p>Kita perlu membuat tabel untuk <strong>User</strong>, <strong>Motor</strong>, dan <strong>Rental</strong>.</p>
+        <section id="database">
+            <h2>2. Desain Database (Migrations)</h2>
+            <p>Kita membutuhkan 3 tabel utama: <code>users</code>, <code>motors</code>, dan <code>transactions</code>.</p>
 
-                <h3>A. Tabel Users</h3>
-                <p>Edit file migration user default, tambahkan kolom <code>role</code>, <code>no_telp</code>, dan <code>alamat</code>.</p>
-                <pre><code class="language-php">$table->string('no_telp')->nullable();
-$table->text('alamat')->nullable();
-$table->enum('role', ['admin', 'pelanggan'])->default('pelanggan');</code></pre>
-
-                <h3>B. Tabel Motors</h3>
-                <pre><code class="language-bash">php artisan make:migration create_motors_table</code></pre>
-                <pre><code class="language-php">Schema::create('motors', function (Blueprint $table) {
-    $table->id();
-    $table->string('nopol')->unique();
-    $table->string('merk');
-    $table->decimal('harga_sewa', 10, 2);
-    $table->enum('status', ['tersedia', 'disewa'])->default('tersedia');
-    $table->timestamps();
-});</code></pre>
-
-                <h3>C. Tabel Rentals</h3>
-                <pre><code class="language-bash">php artisan make:migration create_rentals_table</code></pre>
-                <pre><code class="language-php">Schema::create('rentals', function (Blueprint $table) {
-    $table->id();
-    $table->foreignId('user_id')->constrained();
-    $table->foreignId('motor_id')->constrained();
-    $table->date('tgl_pinjam');
-    $table->date('tgl_kembali')->nullable();
-    $table->integer('lama_pinjam')->nullable(); // Perbaikan nama kolom
-    $table->decimal('total_bayar', 10, 2)->nullable();
-    $table->enum('status_transaksi', ['menunggu', 'proses', 'selesai', 'ditolak']);
-    $table->timestamps();
-});</code></pre>
-
-                <p>Terakhir, jalankan migrasi:</p>
-                <pre><code class="language-bash">php artisan migrate</code></pre>
-            </section>
-
-            <!-- Step 4 -->
-            <section id="step4">
-                <h2><span class="step-badge">4</span>Models & Relasi</h2>
-                <p>Definisikan relasi antar tabel di dalam Model.</p>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <h5>Model Rental.php</h5>
-                        <pre><code class="language-php">public function user() { 
-    return $this->belongsTo(User::class); 
-}
-
-public function motor() { 
-    return $this->belongsTo(Motor::class); 
-}</code></pre>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>Model Motor.php</h5>
-                        <pre><code class="language-php">protected $fillable = [
-    'nopol', 'merk', 'harga_sewa', 'status'
-];</code></pre>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Step 5 -->
-            <section id="step5">
-                <h2><span class="step-badge">5</span>Controllers (Logika Bisnis)</h2>
-                <p>Bagian terpenting adalah <code>RentalController.php</code> yang menangani transaksi.</p>
-
-                <h3>Logika Pengembalian Motor</h3>
-                <p>Menggunakan <code>DB::transaction</code> untuk keamanan data.</p>
-                <pre><code class="language-php">public function returnMotor($id) {
-    $rental = Rental::with('motor')->findOrFail($id);
-
-    // Hitung Durasi
-    $tgl_pinjam = Carbon::parse($rental->tgl_pinjam);
-    $tgl_kembali = now();
-    $durasi = $tgl_pinjam->diffInDays($tgl_kembali);
-    if ($durasi < 1) $durasi = 1; // Min 1 hari
-
-    // Hitung Bayar
-    $total_bayar = $durasi * $rental->motor->harga_sewa;
-
-    DB::transaction(function () use ($rental, $tgl_kembali, $durasi, $total_bayar) {
-        $rental->update([
-            'tgl_kembali' => $tgl_kembali,
-            'lama_pinjam' => $durasi, // Pastikan sesuai DB
-            'total_bayar' => $total_bayar,
-            'status_transaksi' => 'selesai',
-        ]);
-
-        // Kembalikan stok motor
-        $rental->motor->update(['status' => 'tersedia']);
+            <h3>Tabel Motors</h3>
+            <p>Membuat migrasi untuk tabel motor:</p>
+            <pre><code>php artisan make:migration create_motors_table</code></pre>
+            <p>Edit file migrasi:</p>
+            <pre><code>public function up()
+{
+    Schema::create('motors', function (Blueprint $table) {
+        $table->id();
+        $table->string('nopol', 20)->unique(); // Validasi unik
+        $table->string('merk', 50);
+        $table->string('jenis', 50); // Matic, Bebek, Sport
+        $table->decimal('harga_sewa', 10, 2);
+        $table->enum('status', ['tersedia', 'tidak_tersedia'])->default('tersedia');
+        $table->timestamps();
     });
-
-    return back()->with('success', 'Pengembalian berhasil.');
 }</code></pre>
-            </section>
 
-            <!-- Step 6 -->
-            <section id="step6">
-                <h2><span class="step-badge">6</span>Routing (routes/web.php)</h2>
-                <p>Mengatur jalur akses URL untuk Admin dan User.</p>
-                <pre><code class="language-php">// Group Admin
-Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
-    Route::resource('motor', MotorController::class);
-    Route::get('/rentals', [RentalController::class, 'index']);
-    Route::patch('/rentals/{id}/approve', [RentalController::class, 'approve']);
-    Route::patch('/rentals/{id}/return', [RentalController::class, 'returnMotor']);
-});
+            <h3>Tabel Transactions (Peminjaman)</h3>
+            <pre><code>php artisan make:migration create_transactions_table</code></pre>
+            <pre><code>public function up()
+{
+    Schema::create('transactions', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->foreignId('motor_id')->constrained()->onDelete('cascade');
+        $table->date('tgl_pinjam');
+        $table->date('tgl_kembali')->nullable();
+        $table->decimal('total_bayar', 12, 2)->nullable();
+        $table->decimal('denda', 12, 2)->default(0);
+        $table->enum('status', ['sewa', 'selesai'])->default('sewa');
+        $table->timestamps();
+    });
+}</code></pre>
+            
+            <p>Jalankan migrasi:</p>
+            <pre><code>php artisan migrate</code></pre>
+        </section>
 
-// Group User
-Route::middleware(['auth', 'role:pelanggan'])->prefix('user')->group(function () {
-    Route::get('/dashboard', [RentalController::class, 'userDashboard']);
-    Route::post('/pinjam', [RentalController::class, 'pinjam']);
-});</code></pre>
-            </section>
+        <section id="backend">
+            <h2>3. Logika Bisnis (Backend)</h2>
+            
+            <h3>Model Setup</h3>
+            <p>Tambahkan <code>protected $guarded = [];</code> pada model <code>Motor</code> dan <code>Transaction</code> agar mass assignment bisa berjalan.</p>
 
-            <!-- Step 7 -->
-            <section id="step7">
-                <h2><span class="step-badge">7</span>Views & UI</h2>
-                <p>Gunakan Bootstrap 5 untuk tampilan yang responsif.</p>
-                
-                <h3>Struktur Folder Views</h3>
-                <ul>
-                    <li><code>resources/views/layouts/app.blade.php</code> (Master Template)</li>
-                    <li><code>resources/views/admin/rentals/index.blade.php</code> (Tabel Transaksi)</li>
-                    <li><code>resources/views/user/dashboard.blade.php</code> (Katalog Motor)</li>
-                </ul>
+            <h3>Logika Peminjaman (Store)</h3>
+            <p>Saat user menyewa motor, status motor harus berubah menjadi "tidak_tersedia".</p>
+            <pre><code>// TransactionController.php
 
-                <div class="alert-tip">
-                    <strong>Tips UX:</strong> Gunakan SweetAlert untuk notifikasi yang lebih menarik daripada alert browser standar.
-                </div>
-            </section>
+public function store(Request $request)
+{
+    // 1. Validasi Input
+    $request->validate([
+        'motor_id' => 'required|exists:motors,id',
+        'tgl_pinjam' => 'required|date|after_or_equal:today',
+    ]);
 
-            <footer class="mt-5 pt-5 border-top text-center text-muted">
-                <p>&copy; 2026 Tutorial Rental Motor. Dibuat untuk UKK RPL.</p>
-            </footer>
-        </div>
-    </div>
-</div>
+    // 2. Cek Ketersediaan Motor (Double Check)
+    $motor = Motor::find($request->motor_id);
+    if($motor->status !== 'tersedia') {
+        return back()->with('error', 'Motor sedang tidak tersedia!');
+    }
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- PrismJS Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    // 3. Buat Transaksi
+    Transaction::create([
+        'user_id' => auth()->id(),
+        'motor_id' => $request->motor_id,
+        'tgl_pinjam' => $request->tgl_pinjam,
+        'status' => 'sewa'
+    ]);
+
+    // 4. Update Status Motor
+    $motor->update(['status' => 'tidak_tersedia']);
+
+    return redirect()->route('transactions.index')->with('success', 'Sewa berhasil!');
+}</code></pre>
+
+            <h3>Logika Pengembalian (Return) - Fitur Utama</h3>
+            <div class="alert">
+                <strong>Poin Penting:</strong> Sistem harus otomatis menghitung durasi dan total biaya. Jika sewa kurang dari 24 jam (0 hari), tetap dihitung 1 hari (Minimum Charge).
+            </div>
+            <pre><code>// TransactionController.php
+
+public function complete(Request $request, Transaction $transaction)
+{
+    // Menggunakan Carbon untuk manipulasi tanggal
+    $tglKembali = now(); // Atau input dari request
+    $tglPinjam = \Carbon\Carbon::parse($transaction->tgl_pinjam);
     
+    // Hitung selisih hari
+    $durasi = $tglPinjam->diffInDays($tglKembali);
+    
+    // Logika Minimum Charge (Jika < 1 hari, hitung 1 hari)
+    if ($durasi < 1) {
+        $durasi = 1;
+    }
+
+    // Ambil harga sewa motor
+    $hargaPerHari = $transaction->motor->harga_sewa;
+    
+    // Hitung Total
+    $totalBayar = $durasi * $hargaPerHari;
+
+    // Update Transaksi
+    $transaction->update([
+        'tgl_kembali' => $tglKembali,
+        'total_bayar' => $totalBayar,
+        'status' => 'selesai'
+    ]);
+
+    // Kembalikan Status Motor menjadi Tersedia
+    $transaction->motor->update(['status' => 'tersedia']);
+
+    return back()->with('success', "Pengembalian sukses. Total: Rp " . number_format($totalBayar));
+}</code></pre>
+        </section>
+
+        <section id="frontend">
+            <h2>4. Tampilan (Frontend)</h2>
+            <p>Gunakan template <strong>SB Admin 2</strong> untuk tampilan dashboard yang profesional.</p>
+
+            <h3>Struktur Folder View</h3>
+            <ul>
+                <li><code>resources/views/layouts/app.blade.php</code> (Master layout)</li>
+                <li><code>resources/views/motors/index.blade.php</code> (Tabel daftar motor)</li>
+                <li><code>resources/views/transactions/create.blade.php</code> (Form sewa)</li>
+            </ul>
+
+            <h3>Contoh Tabel Motor (Blade)</h3>
+            <pre><code>&lt;table class="table table-bordered"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;No Polisi&lt;/th&gt;
+            &lt;th&gt;Merk&lt;/th&gt;
+            &lt;th&gt;Status&lt;/th&gt;
+            &lt;th&gt;Aksi&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        @foreach($motors as $motor)
+        &lt;tr&gt;
+            &lt;td&gt;{{ $motor->nopol }}&lt;/td&gt;
+            &lt;td&gt;{{ $motor->merk }}&lt;/td&gt;
+            &lt;td&gt;
+                &lt;span class="badge bg-{{ $motor->status == 'tersedia' ? 'success' : 'danger' }}"&gt;
+                    {{ $motor->status }}
+                &lt;/span&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+                @if($motor->status == 'tersedia')
+                    &lt;a href="{{ route('sewa.create', $motor->id) }}" class="btn btn-primary btn-sm"&gt;Sewa&lt;/a&gt;
+                @else
+                    &lt;button class="btn btn-secondary btn-sm" disabled&gt;Disewa&lt;/button&gt;
+                @endif
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        @endforeach
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+        </section>
+
+        <section id="security">
+            <h2>5. Keamanan & Validasi</h2>
+            <ul>
+                <li><strong>Authentication:</strong> Gunakan Laravel Breeze atau UI untuk Login/Register.</li>
+                <li><strong>Middleware:</strong> Pastikan route admin dilindungi middleware <code>auth</code>.</li>
+                <li><strong>CSRF Protection:</strong> Pastikan semua form menggunakan <code>@csrf</code>.</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Tutorial UKK RPL - Dibuat untuk tujuan pembelajaran.</p>
+        </footer>
+    </div>
+
     <script>
-        // Simple ScrollSpy logic for Sidebar
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            window.addEventListener('scroll', () => {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 100) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').includes(current)) {
-                        link.classList.add('active');
-                    }
+        // Script sederhana untuk smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
             });
-        });
-    </script>
-</body>
-</html>
-```
-
-<!--
-[PROMPT_SUGGESTION]Bagaimana cara menambahkan fitur pencarian (search) pada halaman dokumentasi ini menggunakan JavaScript?[/PROMPT_SUGGESTION]
-[PROMPT_SUGGESTION]Buatkan file CSS terpisah (style.css) agar kode HTML lebih rapi.[/PROMPT_SUGGESTION]
--->
-    </div>
-
-    <!-- Features Section -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold text-dark">Fitur Unggulan</h2>
-                <p class="text-muted">Dibangun untuk memenuhi standar Uji Kompetensi Keahlian (UKK)</p>
-            </div>
-            <div class="row g-4">
-                <!-- Feature 1 -->
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-card">
-                        <div class="icon-box"><i class="fas fa-user-shield"></i></div>
-                        <h4>Multi-Role Access</h4>
-                        <p class="text-muted">Pemisahan hak akses yang aman antara Administrator dan Pelanggan dengan middleware Laravel.</p>
-                    </div>
-                </div>
-                <!-- Feature 2 -->
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-card">
-                        <div class="icon-box"><i class="fas fa-motorcycle"></i></div>
-                        <h4>Real-time Inventory</h4>
-                        <p class="text-muted">Status motor (Tersedia/Disewa) berubah otomatis saat transaksi terjadi. Mencegah double booking.</p>
-                    </div>
-                </div>
-                <!-- Feature 3 -->
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature-card">
-                        <div class="icon-box"><i class="fas fa-file-invoice-dollar"></i></div>
-                        <h4>Smart Billing</h4>
-                        <p class="text-muted">Perhitungan durasi sewa dan total biaya otomatis, termasuk logika denda keterlambatan.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tech Stack -->
-    <section class="py-5">
-        <div class="container text-center">
-            <h3 class="fw-bold mb-4">Teknologi yang Digunakan</h3>
-            <div class="d-flex justify-content-center flex-wrap gap-3" data-aos="fade-up">
-                <span class="badge bg-danger tech-badge"><i class="fab fa-laravel me-2"></i>Laravel 12</span>
-                <span class="badge bg-primary tech-badge"><i class="fab fa-bootstrap me-2"></i>Bootstrap 5</span>
-                <span class="badge bg-warning text-dark tech-badge"><i class="fas fa-database me-2"></i>MySQL</span>
-                <span class="badge bg-dark tech-badge"><i class="fab fa-php me-2"></i>PHP 8.2+</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container text-center">
-            <p class="mb-0">&copy; 2026 Aplikasi Rental Motor. Created for UKK RPL.</p>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-            once: true
         });
     </script>
 </body>

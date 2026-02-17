@@ -3,272 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dokumentasi Rental Motor (UKK 2026)</title>
+    <title>Modul Laravel 12 - Rental Motor | SMKN 1 Singkarak</title>
+    <meta name="description" content="Modul Praktik Kejuruan RPL: Aplikasi Rental Motor Berbasis Web">
+    <meta name="author" content="Hazira Fakhrurrozi Amir">
+    
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome & Google Fonts -->
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="container">
-        <!-- Sidebar Navigation -->
-        <nav class="sidebar">
-            <div class="brand">
-                <i class="fas fa-motorcycle"></i> Rental<span class="highlight">Motor</span>
-            </div>
-            <ul class="nav-links">
-                <li class="active" onclick="showSection('intro')"><i class="fas fa-home"></i> Pengantar</li>
-                <li onclick="showSection('tools')"><i class="fas fa-tools"></i> Persiapan Tools</li>
-                <li onclick="showSection('install')"><i class="fas fa-download"></i> Instalasi Project</li>
-                <li onclick="showSection('db')"><i class="fas fa-database"></i> Konfigurasi Database</li>
-                <li onclick="showSection('fix')"><i class="fas fa-bug"></i> Perbaikan Kode</li>
-                <li onclick="showSection('run')"><i class="fas fa-play-circle"></i> Menjalankan App</li>
-            </ul>
-            <div class="footer-nav">
-                <p>&copy; 2026 UKK RPL</p>
-            </div>
-        </nav>
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Rental Motor App</h3>
+            <p>Laravel 12 - XII RPL</p>
+        </div>
+        <ul class="list-unstyled components">
+            <li><a href="#intro" class="active">1. Pengantar & Tujuan</a></li>
+            <li><a href="#pertemuan1">2. Pertemuan 1: Database</a></li>
+            <li><a href="#pertemuan2">3. Pertemuan 2: Layout & CRUD</a></li>
+            <li><a href="#pertemuan3">4. Pertemuan 3: Logika Bisnis</a></li>
+            <li><a href="#fullcode">5. Lampiran: Kode Lengkap</a></li>
+            <li><a href="#penilaian">6. Lembar Penilaian</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <small>&copy; 2026 Hazira F. Amir<br>SMKN 1 Singkarak</small>
+        </div>
+    </nav>
 
-        <!-- Main Content -->
-        <main class="content">
+    <div id="content">
+        <button type="button" id="sidebarCollapse" class="btn-mobile">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <main class="container">
             
-            <!-- SECTION: INTRO -->
-            <section id="intro" class="section active">
-                <header>
-                    <h1>Selamat Datang di Dokumentasi Rental Motor</h1>
-                    <p class="subtitle">Panduan lengkap instalasi dan konfigurasi untuk UKK RPL 2026.</p>
-                </header>
-                <div class="card">
-                    <h3>Tentang Aplikasi</h3>
-                    <p>Aplikasi ini dibangun menggunakan <strong>Laravel 10/11</strong> dan <strong>Bootstrap SB Admin 2</strong>. Fitur utamanya mencakup manajemen inventaris motor, transaksi peminjaman, pengembalian otomatis dengan denda, dan laporan.</p>
-                    <div class="badges">
-                        <span class="badge laravel">Laravel</span>
-                        <span class="badge mysql">MySQL</span>
-                        <span class="badge bootstrap">Bootstrap</span>
-                    </div>
+            <header id="intro" class="section">
+                <h1>Modul & Jobsheet Pemrograman Web</h1>
+                <div class="meta-info">
+                    <span class="badge">Laravel 12</span>
+                    <span class="badge">XII RPL</span>
+                    <span class="badge">Genap 2025/2026</span>
                 </div>
-            </section>
+                <p class="lead">Proyek: Aplikasi Rental Motor Berbasis Web (Deep Learning & PjBL)</p>
+                <hr>
+                <h3>Tujuan Pembelajaran</h3>
+                <ul class="objective-list">
+                    <li><strong>Arsitektur MVC:</strong> Memahami pemisahan Logika (Controller), Data (Model), dan Tampilan (View).</li>
+                    <li><strong>State Management:</strong> Mengelola status motor (Tersedia/Dipinjam) secara otomatis.</li>
+                    <li><strong>Algoritma Bisnis:</strong> Menerjemahkan aturan bisnis (Denda, Hitung Hari) menggunakan library Carbon.</li>
+                </ul>
+            </header>
 
-            <!-- SECTION: TOOLS -->
-            <section id="tools" class="section">
-                <header>
-                    <h1>1. Persiapan Tools</h1>
-                    <p>Sebelum memulai, pastikan tools berikut sudah terinstall.</p>
-                </header>
+            <section id="pertemuan1" class="section">
+                <h2>📅 Pertemuan 1: Pondasi Sistem & Database</h2>
+                <p><strong>Fokus:</strong> Instalasi, Konfigurasi Environment, dan Schema Database.</p>
 
-                <div class="step-card">
-                    <div class="step-number">01</div>
-                    <div class="step-content">
-                        <h3>Laragon (Web Server)</h3>
-                        <p>Laragon digunakan sebagai paket lengkap (PHP, MySQL, Apache/Nginx).</p>
-                        <ol>
-                            <li>Download Laragon Full di <a href="https://laragon.org/download/" target="_blank">laragon.org</a>.</li>
-                            <li>Install dan jalankan Laragon.</li>
-                            <li>Klik tombol <strong>Start All</strong> untuk menjalankan Service Apache dan MySQL.</li>
-                            <li>Pastikan PHP versi >= 8.1 (Cek di Menu > PHP > Version).</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">02</div>
-                    <div class="step-content">
-                        <h3>DBeaver (Database Manager)</h3>
-                        <p>Digunakan untuk mengelola database MySQL secara visual.</p>
-                        <ol>
-                            <li>Download DBeaver Community di <a href="https://dbeaver.io/download/" target="_blank">dbeaver.io</a>.</li>
-                            <li>Install dan buka aplikasi.</li>
-                            <li>Buat koneksi baru: Pilih <strong>MySQL</strong>.</li>
-                            <li><strong>Server Host:</strong> localhost, <strong>Port:</strong> 3306.</li>
-                            <li><strong>Username:</strong> root, <strong>Password:</strong> (kosongkan jika default Laragon).</li>
-                        </ol>
-                    </div>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">03</div>
-                    <div class="step-content">
-                        <h3>Visual Studio Code</h3>
-                        <p>Text Editor utama.</p>
-                        <p>Install Extension wajib:</p>
-                        <ul>
-                            <li>PHP Intelephense</li>
-                            <li>Laravel Blade Snippets</li>
-                            <li>Laravel Extra Intellisense</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECTION: INSTALL -->
-            <section id="install" class="section">
-                <header>
-                    <h1>2. Instalasi Project</h1>
-                    <p>Langkah-langkah mengambil kode dari GitHub dan menyiapkan dependensi.</p>
-                </header>
-
-                <article class="tutorial-step">
-                    <h3>Langkah 1: Clone Repository</h3>
-                    <p>Buka Terminal (Git Bash atau CMD) di folder <code>C:\laragon\www</code>.</p>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span>Terminal</span>
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        </div>
-                        <pre><code>cd C:\laragon\www
-git clone https://github.com/hazira-rozi/rental_motor.git
-cd rental_motor</code></pre>
-                    </div>
-                </article>
-
-                <article class="tutorial-step">
-                    <h3>Langkah 2: Install Dependensi PHP</h3>
-                    <p>Jalankan perintah composer untuk mengunduh library Laravel.</p>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span>Terminal</span>
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        </div>
-                        <pre><code>composer install</code></pre>
-                    </div>
-                </article>
-
-                <article class="tutorial-step">
-                    <h3>Langkah 3: Konfigurasi Environment</h3>
-                    <p>Duplikat file contoh konfigurasi.</p>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span>Terminal</span>
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        </div>
-                        <pre><code>cp .env.example .env
-php artisan key:generate</code></pre>
-                    </div>
-                </article>
-            </section>
-
-            <!-- SECTION: DATABASE -->
-            <section id="db" class="section">
-                <header>
-                    <h1>3. Konfigurasi Database</h1>
-                    <p>Menghubungkan aplikasi dengan MySQL via DBeaver.</p>
-                </header>
-
-                <article class="tutorial-step">
-                    <h3>Buat Database Baru</h3>
-                    <p>Buka DBeaver, klik kanan pada koneksi Localhost -> <strong>Create New Database</strong>.</p>
-                    <ul>
-                        <li><strong>Database Name:</strong> <code>db_rental_motor</code></li>
-                        <li><strong>Charset:</strong> <code>utf8mb4</code></li>
-                    </ul>
-                </article>
-
-                <article class="tutorial-step">
-                    <h3>Edit File .env</h3>
-                    <p>Buka file <code>.env</code> di VS Code, cari bagian DB dan sesuaikan:</p>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span>.env</span>
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        </div>
-                        <pre><code>DB_CONNECTION=mysql
+                <div class="step">
+                    <h4>Tahap 1.1: Konfigurasi .env</h4>
+                    <p>Sesuaikan konfigurasi database di file <code>.env</code>:</p>
+                    <pre><code class="language-bash">APP_NAME="Rental Motor SMKN 1 Singkarak"
+DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=db_rental_motor
+DB_DATABASE=db_rental_2026
 DB_USERNAME=root
 DB_PASSWORD=</code></pre>
-                    </div>
-                </article>
-
-                <article class="tutorial-step">
-                    <h3>Migrasi & Seeding</h3>
-                    <p>Membuat tabel dan data dummy awal (Admin).</p>
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span>Terminal</span>
-                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        </div>
-                        <pre><code>php artisan migrate:fresh --seed</code></pre>
-                    </div>
-                </article>
-            </section>
-
-             <!-- SECTION: FIX CODE -->
-             <section id="fix" class="section">
-                <header>
-                    <h1>4. Perbaikan Kode (Penting)</h1>
-                    <p>Berdasarkan analisa, ada beberapa file yang perlu dibersihkan/diperbaiki.</p>
-                </header>
-
-                <details class="foldable-code">
-                    <summary><strong>1. Hapus File Sampah (question.js)</strong></summary>
-                    <div class="details-content">
-                        <p>File <code>public/js/questions/question.js</code> berisi logika ujian online yang tidak relevan. Silakan hapus file tersebut agar proyek bersih.</p>
-                    </div>
-                </details>
-
-                <details class="foldable-code">
-                    <summary><strong>2. Perbaikan RentalController.php (Approve)</strong></summary>
-                    <div class="details-content">
-                        <p>Tambahkan validasi stok motor sebelum menyetujui peminjaman untuk keamanan ganda.</p>
-                        <div class="code-block">
-                            <div class="code-header"><span>RentalController.php</span></div>
-                            <pre><code>// Method approve() yang diperbaiki
-public function approve($id) {
-    $rental = Rental::with('motor')->findOrFail($id);
-
-    if ($rental->status_transaksi == 'menunggu') {
-        // Cek apakah motor benar-benar tersedia/disewa statusnya
-        if($rental->motor->status !== 'disewa') {
-             return back()->with('error', 'Status motor tidak valid.');
-        }
-
-        $rental->update(['status_transaksi' => 'proses']);
-        return back()->with('success', 'Peminjaman disetujui.');
-    }
-    return back()->with('error', 'Aksi tidak valid.');
-}</code></pre>
-                        </div>
-                    </div>
-                </details>
-            </section>
-
-            <!-- SECTION: RUN -->
-            <section id="run" class="section">
-                <header>
-                    <h1>5. Menjalankan Aplikasi</h1>
-                </header>
-
-                <div class="step-card">
-                    <div class="step-number"><i class="fas fa-rocket"></i></div>
-                    <div class="step-content">
-                        <h3>Jalankan Server</h3>
-                        <p>Gunakan perintah artisan serve:</p>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span>Terminal</span>
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                            </div>
-                            <pre><code>php artisan serve</code></pre>
-                        </div>
-                        <p>Buka browser dan akses: <a href="http://127.0.0.1:8000" target="_blank">http://127.0.0.1:8000</a></p>
-                    </div>
                 </div>
 
-                <div class="alert-box">
-                    <i class="fas fa-info-circle"></i>
-                    <div>
-                        <strong>Akun Login Default (dari Seeder):</strong><br>
-                        Admin: <code>admin@rental.com</code> / <code>password</code><br>
-                        User: <code>user@rental.com</code> / <code>password</code>
+                <div class="step">
+                    <h4>Tahap 1.2: Migrasi Tabel (Rentals)</h4>
+                    <p>Jalankan: <code>php artisan make:migration create_rentals_table</code></p>
+                    <pre><code class="language-php">public function up(): void
+{
+    Schema::create('rentals', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->foreignId('motor_id')->constrained();
+        
+        $table->dateTime('tgl_pinjam');
+        $table->dateTime('tgl_kembali')->nullable(); // Nullable karena awal sewa belum kembali
+        $table->integer('lama_sewa')->nullable();
+        $table->decimal('total_bayar', 12, 0)->nullable();
+        
+        $table->string('status')->default('jalan'); // Opsi: 'jalan', 'selesai'
+        $table->timestamps();
+    });
+}</code></pre>
+                    <div class="alert-box">
+                        <strong>💡 Konsep Penting:</strong> Mengapa <code>nullable()</code>? Karena saat transaksi baru dimulai (Create), kita belum tahu kapan user akan mengembalikan motor atau berapa total bayarnya. Kolom ini diisi saat Update.
                     </div>
+                </div>
+            </section>
+
+            <section id="pertemuan2" class="section">
+                <h2>📅 Pertemuan 2: Integrasi Layout & CRUD</h2>
+                <p><strong>Fokus:</strong> Blade Templating, Routing, dan Controller Dasar.</p>
+
+                <div class="step">
+                    <h4>Tahap 2.1: Master Layout</h4>
+                    <p>File: <code>resources/views/layouts/app.blade.php</code></p>
+                    <pre><code class="language-html">&lt;div id="wrapper"&gt;
+    @include('layouts.sidebar')
+
+    &lt;div id="content-wrapper" class="d-flex flex-column"&gt;
+        &lt;div id="content"&gt;
+            @include('layouts.navbar')
+
+            &lt;div class="container-fluid"&gt;
+                @yield('content')
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+
+                <div class="step">
+                    <h4>Tahap 2.2: MotorController (Store)</h4>
+                    <p>File: <code>app/Http/Controllers/MotorController.php</code></p>
+                    <pre><code class="language-php">public function store(Request $request)
+{
+    // Validasi
+    $request->validate([
+        'nopol' => 'required|unique:motors',
+        'merk' => 'required',
+        'harga' => 'required|numeric'
+    ]);
+
+    // Mass Assignment
+    Motor::create($request->all());
+
+    return back()->with('success', 'Data Motor Berhasil Disimpan!');
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="pertemuan3" class="section">
+                <h2>📅 Pertemuan 3: Logika Bisnis</h2>
+                <p><strong>Fokus:</strong> Algoritma Waktu, Transaksi, dan Testing.</p>
+
+                <div class="step">
+                    <h4>Tahap 3.1: Memulai Sewa</h4>
+                    <p>File: <code>app/Http/Controllers/RentalController.php</code></p>
+                    <pre><code class="language-php">public function store(Request $request)
+{
+    // 1. Simpan Transaksi
+    Rental::create([
+        'user_id' => auth()->id(),
+        'motor_id' => $request->motor_id,
+        'tgl_pinjam' => now(),
+        'status' => 'jalan'
+    ]);
+
+    // 2. Kunci Motor (Update Status)
+    $motor = Motor::find($request->motor_id);
+    $motor->update(['tersedia' => false]);
+
+    return redirect('/dashboard')->with('success', 'Sewa Dimulai!');
+}</code></pre>
+                </div>
+
+                <div class="step">
+                    <h4>Tahap 3.2: Pengembalian & Hitung Denda</h4>
+                    <pre><code class="language-php">public function kembalikan($id)
+{
+    $sewa = Rental::with('motor')->findOrFail($id);
+
+    // 1. Hitung Durasi
+    $tgl_kembali = now();
+    $durasi = $sewa->tgl_pinjam->diffInDays($tgl_kembali);
+    if ($durasi < 1) { $durasi = 1; } // Minimal 1 hari
+
+    // 2. Hitung Total Bayar
+    $tagihan = $durasi * $sewa->motor->harga;
+
+    // 3. Simpan Perubahan
+    $sewa->update([
+        'tgl_kembali' => $tgl_kembali,
+        'lama_sewa' => $durasi,
+        'total_bayar' => $tagihan,
+        'status' => 'selesai'
+    ]);
+
+    // 4. Buka Kunci Motor
+    $sewa->motor->update(['tersedia' => true]);
+    
+    return back()->with('success', "Sewa Selesai! Tagihan: Rp " . number_format($tagihan));
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="fullcode" class="section">
+                <h2>📂 Lampiran: Kode Lengkap (Full Source)</h2>
+                <p>Gunakan kode di bawah ini jika mengalami error atau kehilangan jejak.</p>
+
+                <div class="accordion">
+                    <details>
+                        <summary>📂 database/migrations/create_users_table.php</summary>
+                        <pre><code class="language-php">Schema::create('users', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->string('username')->unique();
+    $table->string('email')->unique();
+    $table->string('password');
+    $table->string('no_telp')->nullable();
+    $table->text('alamat')->nullable();
+    $table->enum('role', ['admin', 'pelanggan'])->default('pelanggan');
+    $table->timestamps();
+});</code></pre>
+                    </details>
+
+                    <details>
+                        <summary>📂 database/migrations/create_motors_table.php</summary>
+                        <pre><code class="language-php">Schema::create('motors', function (Blueprint $table) {
+    $table->id();
+    $table->string('nopol', 15)->unique();
+    $table->string('merk');
+    $table->integer('harga_sewa');
+    $table->enum('status', ['tersedia', 'disewa', 'booking'])->default('tersedia');
+    $table->timestamps();
+});</code></pre>
+                    </details>
+
+                    <details>
+                        <summary>📂 app/Models/User.php</summary>
+                        <pre><code class="language-php">protected $fillable = [
+    'name', 'username', 'email', 'password', 'no_telp', 'alamat', 'role'
+];
+
+public function isAdmin() {
+    return $this->role === 'admin';
+}</code></pre>
+                    </details>
+
+                    <details>
+                        <summary>📂 routes/web.php</summary>
+                        <pre><code class="language-php">Route::middleware('auth')->group(function () {
+    
+    // AREA ADMIN
+    Route::middleware('can:is-admin')->prefix('admin')->group(function () {
+        Route::resource('motor', MotorController::class);
+        Route::get('/rentals', [RentalController::class, 'index'])->name('admin.rentals');
+        Route::patch('/rentals/{id}/approve', [RentalController::class, 'approve']);
+        Route::get('/rentals/{id}/return', [RentalController::class, 'returnMotor']);
+    });
+
+    // AREA USER
+    Route::middleware('can:is-pelanggan')->prefix('user')->group(function () {
+        Route::get('/dashboard', [RentalController::class, 'userDashboard']);
+        Route::post('/rental/pinjam', [RentalController::class, 'pinjam'])->name('rental.pinjam');
+    });
+});</code></pre>
+                    </details>
+                    
+                    <p class="mt-3"><em>*Lihat Repository GitHub Guru untuk file Blade View lengkap.</em></p>
+                </div>
+            </section>
+
+            <section id="penilaian" class="section">
+                <h2>📋 Lembar Penilaian Praktik</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Komponen</th>
+                                <th>Kriteria Ketuntasan</th>
+                                <th>Cek</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>Environment</td><td>.env terkonfigurasi, Database terkoneksi</td><td>⬜</td></tr>
+                            <tr><td>2</td><td>Database</td><td>Migrasi tabel motors & rentals sukses</td><td>⬜</td></tr>
+                            <tr><td>3</td><td>UI Layout</td><td>Sidebar & Navbar rapi</td><td>⬜</td></tr>
+                            <tr><td>4</td><td>CRUD Motor</td><td>Input, Edit, Hapus berfungsi</td><td>⬜</td></tr>
+                            <tr><td>5</td><td>Validasi</td><td>Tolak Nopol ganda</td><td>⬜</td></tr>
+                            <tr><td>6</td><td>Transaksi</td><td>Status motor berubah otomatis</td><td>⬜</td></tr>
+                            <tr><td>7</td><td>Logika</td><td>Hitung biaya sewa akurat</td><td>⬜</td></tr>
+                            <tr><td>8</td><td>UX</td><td>SweetAlert notifikasi muncul</td><td>⬜</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </section>
 
         </main>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
